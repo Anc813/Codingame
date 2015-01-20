@@ -27,7 +27,7 @@ for (var i = 0; i < N; i++) {
 
 var deviations = [];
 for(var i = 0; i < arr[0].length; i++) {
-   var a = arr.map(function(e) {return e[i]});
+   var a = arr.map(function(e) {return e[i]}).sort(function(a,b){return a-b});
    // cut 5% first and 5% last values
    var a = a.slice(a.length/20|0, a.length-a.length/20|0);
    var avg = a.reduce(function(a, b) { return a + b })/a.length;
