@@ -28,11 +28,13 @@ for (var i = 0; i < N; i++) {
 var deviations = [];
 for(var i = 0; i < arr[0].length; i++) {
    var a = arr.map(function(e) {return e[i]});
+   // cut 5% first and 5% last values
+   var a = a.slice(a.length/20|0, a.length-a.length/20|0);
    var avg = a.reduce(function(a, b) { return a + b })/a.length;
    var deviation = a.reduce(function(a, b) { return a + (Math.abs(b - avg)) })/a.length/avg;
    deviations.push(deviation);
 }
-
+printErr(deviations)
 var minval = Math.min.apply( Math, deviations );
 var result = ["O(1)","O(log n)","O(n)","O(n log n)","O(n^2)","O(n^2 log n)","O(n^3)","O(2^n)"];
 print(result[deviations.indexOf(minval)]);
