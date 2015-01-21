@@ -88,6 +88,8 @@ Notes.prototype = {
         pattern6[pattern6.length - 1] -= arr[2] + arr[1];
 
         this.notePositions = [
+            arr[0] - dif*2,
+            arr[0] - dif,
             arr[0],
             arr[0] + dif,
             arr[0] + dif*2,
@@ -97,9 +99,7 @@ Notes.prototype = {
             arr[0] + dif*6,
             arr[0] + dif*7,
             arr[0] + dif*8,
-            arr[0] + dif*9,
-            arr[0] + dif*10,
-            arr[0] + dif*11];
+            arr[0] + dif*9];
             
         this.noteNames = ['G', 'F', 'E', 'D', 'C', 'B', 'A',
             'G', 'F', 'E', 'D', 'C', 'B', 'A'];
@@ -125,13 +125,11 @@ Notes.prototype = {
             var color = (column[j + this.lineStep/2] == '0') ? 'H' : 'Q';
             
             var k = 0;
-            printErr(j);
-            printErr(this.notePositions);
-            while (this.notePositions[k] < j) {
+
+            while (this.notePositions[k+1] < j) {
                 k++;
             }
-            k++;
-            
+
             var noteName = this.noteNames[k];
             
             this.resultNotes.push(noteName + color);
