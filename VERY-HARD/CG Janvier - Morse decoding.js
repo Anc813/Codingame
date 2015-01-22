@@ -40,18 +40,14 @@ function encodeWord(word) {
 }
 
 var words = [];
-var encodedwords = [];
 for (var i = 0; i < N; i++) {
     var W = readline();
-    words.push(W);
-    encodedwords.push(encodeWord(W));
+    var word = encodeWord(W);
+    // filter useless words
+    if (~L.indexOf(word)) words.push(word);
 }
 
-encodedwords = encodedwords.filter(function(e){
-    return ~L.indexOf(e);
-});
-
-var maxwordlength = encodedwords.reduce(function(a,b){return (b.length>a)?b.length:a},0);
+var maxwordlength = words.reduce(function(a,b){return (b.length>a)?b.length:a},0);
 
 var dict = {};
 
@@ -60,8 +56,8 @@ function analyzePart(s) {
 
     var sum = 0;
     
-    for(var i = 0; i < encodedwords.length; i++) {
-        var word = encodedwords[i];
+    for(var i = 0; i < words.length; i++) {
+        var word = words[i];
         
         var short = s.slice(0,maxwordlength);
 
